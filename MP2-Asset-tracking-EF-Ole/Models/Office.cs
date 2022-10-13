@@ -16,5 +16,14 @@ namespace MP2_Asset_tracking_EF_Ole.Models
         [ForeignKey("Alpha2")]
         public Country Country { get; set; }
         public List<Asset> assets { get; set; }
+
+        public static List<Office> Offices = new List<Office>();
+
+        public void Display()
+        {
+            Console.WriteLine("Office: " + Name + " " + " (" + Alpha2 + ")");
+        }
     }
+
+    
 }

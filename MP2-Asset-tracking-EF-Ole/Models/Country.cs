@@ -20,5 +20,7 @@ namespace MP2_Asset_tracking_EF_Ole.Models
         [ForeignKey("CurrencySymbol")]
         public Currency Currency { get; set; }
         public List<Office> Offices { get; set; }
+
+        public static List<Country> Countries = new List<Country>();
     }
 }

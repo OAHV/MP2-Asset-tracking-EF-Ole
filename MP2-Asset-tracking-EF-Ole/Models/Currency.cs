@@ -31,6 +31,8 @@ namespace MP2_Asset_tracking_EF_Ole.Models
             return amount / ExchangeFactor;
         }
 
+        public static List<Currency> Currencies = new List<Currency>();
+
         // Convert from Dollar to this currency
         public double fromDollar(double dollarAmount)
         {
