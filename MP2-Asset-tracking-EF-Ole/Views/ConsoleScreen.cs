@@ -78,10 +78,10 @@ namespace MP2_Asset_tracking_EF_Ole.Views
         }
 
         // Read a date user input
-        public static DateOnly readDate(string prompt, string errorMessage)
+        public static DateTime readDate(string prompt, string errorMessage)
         {
             string inputBuffer = "";
-            DateOnly inputDate = new DateOnly();
+            DateTime inputDate = new DateTime();
             Console.Write(prompt);
             CursorControl.PushCursor();
             while (inputBuffer == "")
@@ -90,7 +90,7 @@ namespace MP2_Asset_tracking_EF_Ole.Views
                 try
                 {
                     // See if input is a valid date
-                    inputDate = DateOnly.FromDateTime(Convert.ToDateTime(inputBuffer));
+                    inputDate = Convert.ToDateTime(inputBuffer);
                 }
                 catch
                 {

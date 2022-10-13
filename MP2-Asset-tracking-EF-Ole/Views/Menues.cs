@@ -33,10 +33,6 @@ namespace MP2_Asset_tracking_EF_Ole.Views
             }, Asset.listAssets);
 
         // Create a main menu
-        // First a list of menu items (rows)
-        static List<MenuItem> menuItems = ;
-
-        // Add menu items to the main menu
         private static int i = 1;
         public static Menu mainMenu = new Menu("Main menu", "Your choise: ", 
             new List<MenuItem>

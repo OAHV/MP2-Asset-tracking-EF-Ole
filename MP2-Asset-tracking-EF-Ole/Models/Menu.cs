@@ -47,8 +47,8 @@ namespace MP2_Asset_tracking_EF_Ole.Models
             }
             // After user has chosen to exit the menu
             // Reset the selected task of each list 
-            AssetList.selected = -1;
-            OfficeList.selected = -1;
+            //AssetList.selected = -1;
+            //OfficeList.selected = -1;
             // Reset to false before the actual exit
             Menues.exit = false;
         }

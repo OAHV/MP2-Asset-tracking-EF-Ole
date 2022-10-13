@@ -1,4 +1,5 @@
-﻿using MP2_Asset_tracking_EF_Ole.Views;
+﻿using MP2_Asset_tracking_EF_Ole.DB;
+using MP2_Asset_tracking_EF_Ole.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,8 +19,8 @@ namespace MP2_Asset_tracking_EF_Ole.Models
         public string Brand { get; set; }
         public int OfficeId { get; set; }
         public Office Office { get; set; }
-        public DateOnly EndOfLife { get; set; }
-        public DateOnly PurchaseDate { get; set; }
+        public DateTime EndOfLife { get; set; }
+        public DateTime PurchaseDate { get; set; }
         public int DollarPrice { get; set; }
 
         public static List<Asset> Assets = new List<Asset>();
@@ -30,9 +31,9 @@ namespace MP2_Asset_tracking_EF_Ole.Models
             Model = model;
             Type = type;
             Brand = brand;
-            Office = new Office() { Name = "No office" };
-            EndOfLife = new DateOnly();
-            PurchaseDate = new DateOnly();
+            Office = new Office() { Name = "No office", Country = new Country() { Name = "-country-", Currency = new Currency() { Symbol = "-" } } };
+            EndOfLife = new DateTime();
+            PurchaseDate = new DateTime();
             DollarPrice = dollarPrice;
         }
 
@@ -154,6 +155,12 @@ namespace MP2_Asset_tracking_EF_Ole.Models
                         if (i > 0) i--;
                         break;
                     case 'd':
+                        // Remove the asset from the database
+                        using (var db = new AssetsDB())
+                        {
+                            db.Assets.Remove(Assets[i]);
+                            db.SaveChanges();
+                        }
                         // Delete: Remove the asset in focus from the list
                         Assets.RemoveAt(i);
                         // If it was the last asset in the list, update to the now last item
@@ -206,13 +213,15 @@ namespace MP2_Asset_tracking_EF_Ole.Models
                 // Price in local currency found by office name
                 Office.Country.Currency.fromDollar(DollarPrice).ToString("0.00")).PadLeft(10) +
                 ("$" + DollarPrice).PadLeft(10) + // Price i dollars
-                "   " +
+                "   "
+                +
                 // Date of purchase
-                PurchaseDate.ToString("d").PadRight(12));
+                PurchaseDate.ToString("d").PadRight(12)
+                );
 
             // Highlight End-of-Life date in yellow or red depending on date
-            if (EndOfLife < DateOnly.FromDateTime(DateTime.Now.AddMonths(6))) Console.ForegroundColor = ConsoleColor.Yellow;
-            if (EndOfLife < DateOnly.FromDateTime(DateTime.Now.AddMonths(3))) Console.ForegroundColor = ConsoleColor.Red;
+            if (EndOfLife < DateTime.Now.AddMonths(6)) Console.ForegroundColor = ConsoleColor.Yellow;
+            if (EndOfLife < DateTime.Now.AddMonths(3)) Console.ForegroundColor = ConsoleColor.Red;
             // Display date - reset color
             Console.WriteLine(EndOfLife.ToString("d").PadRight(12));
             CursorControl.highLight(false);
