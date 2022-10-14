@@ -40,7 +40,7 @@ namespace MP2_Asset_tracking_EF_Ole.Models
         public void Display(int row = 0)
         {
             // Display the menu item (row)
-            Console.WriteLine($"{Index}. {Title} (\"{Choises}\")".PadRight(50));
+            Console.WriteLine($"{Index}. {Title} (\"{Choises}\")".PadRight(Console.WindowWidth));
         }
     }
 }

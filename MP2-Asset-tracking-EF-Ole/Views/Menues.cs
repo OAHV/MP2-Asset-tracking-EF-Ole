@@ -23,7 +23,7 @@ namespace MP2_Asset_tracking_EF_Ole.Views
         private static int k = 1;
         public static Menu sortMenu = new Menu("Choises for sorting", "Sort by: ", new List<MenuItem> {
                 new MenuItem("Sort by Office", k++, "oO", Asset.sortAssetsByOffice),
-                new MenuItem("Sort by Price", k++, "pP", Asset.sortAssetsByPrice),
+                new MenuItem("Sort by Price ($)", k++, "$pP", Asset.sortAssetsByPrice),
                 new MenuItem("Sort by Date purchased", k++, "dD", Asset.sortAssetsByDate),
                 new MenuItem("Sort by Date Name", k++, "nN", Asset.sortAssetsByName),
                 new MenuItem("Sort by Date Model", k++, "mM", Asset.sortAssetsByModel),

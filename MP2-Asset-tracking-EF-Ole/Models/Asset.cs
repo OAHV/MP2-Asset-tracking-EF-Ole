@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace MP2_Asset_tracking_EF_Ole.Models
 {
@@ -18,6 +19,7 @@ namespace MP2_Asset_tracking_EF_Ole.Models
         public string Type { get; set; }
         public string Brand { get; set; }
         public int OfficeId { get; set; }
+        [ForeignKey("OfficeId")]
         public Office Office { get; set; }
         public DateTime EndOfLife { get; set; }
         public DateTime PurchaseDate { get; set; }
@@ -25,13 +27,13 @@ namespace MP2_Asset_tracking_EF_Ole.Models
 
         public static List<Asset> Assets = new List<Asset>();
 
-        public Asset(string name, string model, string type, string brand, int dollarPrice)
+        public Asset(string name = "-name-", string model = "-model-", string type = "-type-", string brand = "-brand-", int dollarPrice = 0)
         {
             Name = name;
             Model = model;
             Type = type;
             Brand = brand;
-            Office = new Office() { Name = "No office", Country = new Country() { Name = "-country-", Currency = new Currency() { Symbol = "-" } } };
+            Office = new Office() { Name = "-office-", Country = new Country() { Name = "-country-", Alpha3 = "-country-", Currency = new Currency() { Symbol = "-" } } };
             EndOfLife = new DateTime();
             PurchaseDate = new DateTime();
             DollarPrice = dollarPrice;
@@ -46,14 +48,14 @@ namespace MP2_Asset_tracking_EF_Ole.Models
             // Print higlighted header
             CursorControl.highLight();
             Console.WriteLine(
-                "Name".PadRight(10)
+                "Brand".PadRight(10)
+                + "Name".PadRight(10)
                 + "Model".PadRight(10)
                 + "Type".PadRight(10)
-                + "Brand".PadRight(10)
                 + "Office".PadRight(11)
                 + "Country".PadRight(10)
-                + "Price".PadLeft(10)
-                + "   $-Price".PadLeft(7)
+                + "Price".PadRight(9)
+                //+ "   $-Price".PadLeft(7)
                 + "   " + "Purchased".PadRight(12)
                 + "End-of-Life".PadRight(12)
                 );
@@ -67,7 +69,7 @@ namespace MP2_Asset_tracking_EF_Ole.Models
         public static void addAssets()
         {
             char ok = '-';      // User input
-            Asset newAsset = new Asset("-name-", "-model-", "-type-", "-brand-", 0);
+            Asset newAsset = new Asset();
 
             // Where to display the new asset template as it is built
             int displayAtRow = ConsoleScreen.lowerPartOfScreen - 2;
@@ -80,15 +82,15 @@ namespace MP2_Asset_tracking_EF_Ole.Models
             Console.WriteLine("Add asset");
 
             // User input of Name, Model, Price, Purchase date, Type and Brand
-            newAsset.Name = ConsoleScreen.readString("Name: ", "No input. Please try again: ");
-            newAsset.Display(displayAtRow);     // Update asset template on screen
-            newAsset.Model = ConsoleScreen.readString("Model: ", "No input. Please try again: ");
+            newAsset.Office = ConsoleScreen.readOfficeFromList("Office: ", "Not an Office. Please try again: ");
             newAsset.Display(displayAtRow);
             newAsset.Type = ConsoleScreen.readString("Type: ", "Not a Type. Please try again: ");
             newAsset.Display(displayAtRow);
             newAsset.Brand = ConsoleScreen.readString("Brand: ", "Not a Brand. Please try again: ");
             newAsset.Display(displayAtRow);
-            newAsset.Office = ConsoleScreen.readOfficeFromList("Office: ", "Not an Office. Please try again: ");
+            newAsset.Name = ConsoleScreen.readString("Name: ", "No input. Please try again: ");
+            newAsset.Display(displayAtRow);     // Update asset template on screen
+            newAsset.Model = ConsoleScreen.readString("Model: ", "No input. Please try again: ");
             newAsset.Display(displayAtRow);
             newAsset.DollarPrice = ConsoleScreen.readInt("Price ($): ", "Not a number. Please try again: ");
             newAsset.Display(displayAtRow);
@@ -107,6 +109,13 @@ namespace MP2_Asset_tracking_EF_Ole.Models
                 switch (ok)
                 {
                     case 'y':
+                        // Write new asset to database
+                        using (var db = new AssetsDB())
+                        {
+                            db.Assets.Update(newAsset);
+                            db.SaveChanges();
+                        }
+                        // Add new asset to list
                         Assets.Add(newAsset);
                         break;
                     case 'n':
@@ -201,22 +210,21 @@ namespace MP2_Asset_tracking_EF_Ole.Models
 
             // Print this asset on screen
             Console.Write(
-                Name.PadRight(10) +         // Name
-                Model.PadRight(10) +        // Model
-                Type.PadRight(10) +         // Type
-                Brand.PadRight(10) +        // Brand
-                Office.Name.PadRight(11) +  // Office
-                                            // Country found by office
-                Office.Country.Name.PadRight(10) +
+                Brand.PadRight(10)      // Brand
+                + Name.PadRight(10)         // Name
+                + Model.PadRight(10)      // Model
+                + Type.PadRight(10)       // Type
+                + Office.Name.PadRight(11)  // Office
+                // Country found by office
+                + Office.Country.Alpha3.PadRight(10) 
                 // Local currency found by office name
-                (Office.Country.Currency.Symbol + " " +
+                + Office.Country.Currency.Symbol.PadRight(3) + " " 
                 // Price in local currency found by office name
-                Office.Country.Currency.fromDollar(DollarPrice).ToString("0.00")).PadLeft(10) +
-                ("$" + DollarPrice).PadLeft(10) + // Price i dollars
-                "   "
-                +
+                + (Office.Country.Currency.fromDollar(DollarPrice).ToString("0")).PadLeft(7) + " "
+                // Price i dollars
+                //+ ("$" + DollarPrice).PadLeft(10) + "   "
                 // Date of purchase
-                PurchaseDate.ToString("d").PadRight(12)
+                + PurchaseDate.ToString("d").PadRight(12)
                 );
 
             // Highlight End-of-Life date in yellow or red depending on date
@@ -230,19 +238,10 @@ namespace MP2_Asset_tracking_EF_Ole.Models
             if (row != 0) CursorControl.PopCursor();
         }
 
-        //        new MenuItem("Sort by Office", k++, "oO", Asset.sortAssetsByOffice),
-        //        new MenuItem("Sort by Price", k++, "pP", Asset.sortAssetsByPrice),
-        //        new MenuItem("Sort by Date purchased", k++, "dD", Asset.sortAssetsByDate),
-        //        new MenuItem("Sort by Date Name", k++, "nN", Asset.sortAssetsByName),
-        //        new MenuItem("Sort by Date Model", k++, "mM", Asset.sortAssetsByModel),
-        //        new MenuItem("Sort by Date Type", k++, "tT", Asset.sortAssetsByType),
-        //        new MenuItem("Sort by Date Brand", k++, "bB", Asset.sortAssetsByBrand),
-
         public static void sortAssetsByOffice()
         {
             Assets = Assets.OrderBy(x => x.Office.Name).ToList();
         }
-
 
         public static void sortAssetsByPrice()
         {

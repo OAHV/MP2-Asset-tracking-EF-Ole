@@ -90,6 +90,608 @@ namespace MP2_Asset_tracking_EF_Ole.Migrations
                     b.HasIndex("CurrencySymbol");
 
                     b.ToTable("Countries");
+
+                    b.HasData(
+                        new
+                        {
+                            Alpha2 = "AD",
+                            Alpha3 = "AND",
+                            CurrencySymbol = "EUR",
+                            Name = "Andorra",
+                            Numeric = 20
+                        },
+                        new
+                        {
+                            Alpha2 = "AT",
+                            Alpha3 = "AUT",
+                            CurrencySymbol = "EUR",
+                            Name = "Austria",
+                            Numeric = 40
+                        },
+                        new
+                        {
+                            Alpha2 = "AU",
+                            Alpha3 = "AUS",
+                            CurrencySymbol = "AUD",
+                            Name = "Australia",
+                            Numeric = 36
+                        },
+                        new
+                        {
+                            Alpha2 = "AX",
+                            Alpha3 = "ALA",
+                            CurrencySymbol = "EUR",
+                            Name = "Åland Islands",
+                            Numeric = 248
+                        },
+                        new
+                        {
+                            Alpha2 = "BE",
+                            Alpha3 = "BEL",
+                            CurrencySymbol = "EUR",
+                            Name = "Belgium",
+                            Numeric = 56
+                        },
+                        new
+                        {
+                            Alpha2 = "BG",
+                            Alpha3 = "BGR",
+                            CurrencySymbol = "BGN",
+                            Name = "Bulgaria",
+                            Numeric = 100
+                        },
+                        new
+                        {
+                            Alpha2 = "BR",
+                            Alpha3 = "BRA",
+                            CurrencySymbol = "BRL",
+                            Name = "Brazil",
+                            Numeric = 76
+                        },
+                        new
+                        {
+                            Alpha2 = "CA",
+                            Alpha3 = "CAN",
+                            CurrencySymbol = "CAD",
+                            Name = "Canada",
+                            Numeric = 124
+                        },
+                        new
+                        {
+                            Alpha2 = "CH",
+                            Alpha3 = "CHE",
+                            CurrencySymbol = "CHF",
+                            Name = "Switzerland",
+                            Numeric = 756
+                        },
+                        new
+                        {
+                            Alpha2 = "CN",
+                            Alpha3 = "CHN",
+                            CurrencySymbol = "CNY",
+                            Name = "China",
+                            Numeric = 156
+                        },
+                        new
+                        {
+                            Alpha2 = "CY",
+                            Alpha3 = "CYP",
+                            CurrencySymbol = "EUR",
+                            Name = "Cyprus",
+                            Numeric = 196
+                        },
+                        new
+                        {
+                            Alpha2 = "CZ",
+                            Alpha3 = "CZE",
+                            CurrencySymbol = "CZK",
+                            Name = "Czech Republic",
+                            Numeric = 203
+                        },
+                        new
+                        {
+                            Alpha2 = "DE",
+                            Alpha3 = "DEU",
+                            CurrencySymbol = "EUR",
+                            Name = "Germany",
+                            Numeric = 276
+                        },
+                        new
+                        {
+                            Alpha2 = "DK",
+                            Alpha3 = "DNK",
+                            CurrencySymbol = "DKK",
+                            Name = "Denmark",
+                            Numeric = 208
+                        },
+                        new
+                        {
+                            Alpha2 = "EC",
+                            Alpha3 = "ECU",
+                            CurrencySymbol = "USD",
+                            Name = "Ecuador",
+                            Numeric = 218
+                        },
+                        new
+                        {
+                            Alpha2 = "EE",
+                            Alpha3 = "EST",
+                            CurrencySymbol = "EUR",
+                            Name = "Estonia",
+                            Numeric = 233
+                        },
+                        new
+                        {
+                            Alpha2 = "ES",
+                            Alpha3 = "ESP",
+                            CurrencySymbol = "EUR",
+                            Name = "Spain",
+                            Numeric = 724
+                        },
+                        new
+                        {
+                            Alpha2 = "FI",
+                            Alpha3 = "FIN",
+                            CurrencySymbol = "EUR",
+                            Name = "Finland",
+                            Numeric = 246
+                        },
+                        new
+                        {
+                            Alpha2 = "FM",
+                            Alpha3 = "FSM",
+                            CurrencySymbol = "USD",
+                            Name = "Micronesia",
+                            Numeric = 583
+                        },
+                        new
+                        {
+                            Alpha2 = "FO",
+                            Alpha3 = "FRO",
+                            CurrencySymbol = "DKK",
+                            Name = "Faroe Islands",
+                            Numeric = 234
+                        },
+                        new
+                        {
+                            Alpha2 = "FR",
+                            Alpha3 = "FRA",
+                            CurrencySymbol = "EUR",
+                            Name = "France",
+                            Numeric = 250
+                        },
+                        new
+                        {
+                            Alpha2 = "GB",
+                            Alpha3 = "GBR",
+                            CurrencySymbol = "GBP",
+                            Name = "United Kingdom",
+                            Numeric = 826
+                        },
+                        new
+                        {
+                            Alpha2 = "GI",
+                            Alpha3 = "GIB",
+                            CurrencySymbol = "GBP",
+                            Name = "Gibraltar",
+                            Numeric = 292
+                        },
+                        new
+                        {
+                            Alpha2 = "GL",
+                            Alpha3 = "GRL",
+                            CurrencySymbol = "DKK",
+                            Name = "Greenland",
+                            Numeric = 304
+                        },
+                        new
+                        {
+                            Alpha2 = "GR",
+                            Alpha3 = "GRC",
+                            CurrencySymbol = "EUR",
+                            Name = "Greece",
+                            Numeric = 300
+                        },
+                        new
+                        {
+                            Alpha2 = "HK",
+                            Alpha3 = "HKG",
+                            CurrencySymbol = "CNY",
+                            Name = "Hong Kong",
+                            Numeric = 344
+                        },
+                        new
+                        {
+                            Alpha2 = "HR",
+                            Alpha3 = "HRV",
+                            CurrencySymbol = "HRK",
+                            Name = "Croatia",
+                            Numeric = 191
+                        },
+                        new
+                        {
+                            Alpha2 = "HU",
+                            Alpha3 = "HUN",
+                            CurrencySymbol = "HUF",
+                            Name = "Hungary",
+                            Numeric = 348
+                        },
+                        new
+                        {
+                            Alpha2 = "ID",
+                            Alpha3 = "IDN",
+                            CurrencySymbol = "IDR",
+                            Name = "Indonesia",
+                            Numeric = 360
+                        },
+                        new
+                        {
+                            Alpha2 = "IE",
+                            Alpha3 = "IRL",
+                            CurrencySymbol = "EUR",
+                            Name = "Ireland",
+                            Numeric = 372
+                        },
+                        new
+                        {
+                            Alpha2 = "IL",
+                            Alpha3 = "ISR",
+                            CurrencySymbol = "ILS",
+                            Name = "Israel",
+                            Numeric = 376
+                        },
+                        new
+                        {
+                            Alpha2 = "IM",
+                            Alpha3 = "IMN",
+                            CurrencySymbol = "GBP",
+                            Name = "Isle of Man",
+                            Numeric = 833
+                        },
+                        new
+                        {
+                            Alpha2 = "IN",
+                            Alpha3 = "IND",
+                            CurrencySymbol = "INR",
+                            Name = "India",
+                            Numeric = 356
+                        },
+                        new
+                        {
+                            Alpha2 = "IS",
+                            Alpha3 = "ISL",
+                            CurrencySymbol = "ISK",
+                            Name = "Iceland",
+                            Numeric = 352
+                        },
+                        new
+                        {
+                            Alpha2 = "IT",
+                            Alpha3 = "ITA",
+                            CurrencySymbol = "EUR",
+                            Name = "Italy",
+                            Numeric = 380
+                        },
+                        new
+                        {
+                            Alpha2 = "JE",
+                            Alpha3 = "JEY",
+                            CurrencySymbol = "GBP",
+                            Name = "Jersey",
+                            Numeric = 832
+                        },
+                        new
+                        {
+                            Alpha2 = "JP",
+                            Alpha3 = "JPN",
+                            CurrencySymbol = "JPY",
+                            Name = "Japan",
+                            Numeric = 392
+                        },
+                        new
+                        {
+                            Alpha2 = "KI",
+                            Alpha3 = "KIR",
+                            CurrencySymbol = "AUD",
+                            Name = "Kiribati",
+                            Numeric = 296
+                        },
+                        new
+                        {
+                            Alpha2 = "KR",
+                            Alpha3 = "KOR",
+                            CurrencySymbol = "KRW",
+                            Name = "Republic of Korea",
+                            Numeric = 410
+                        },
+                        new
+                        {
+                            Alpha2 = "LI",
+                            Alpha3 = "LIE",
+                            CurrencySymbol = "CHF",
+                            Name = "Liechtenstein",
+                            Numeric = 438
+                        },
+                        new
+                        {
+                            Alpha2 = "LT",
+                            Alpha3 = "LTU",
+                            CurrencySymbol = "EUR",
+                            Name = "Lithuania",
+                            Numeric = 440
+                        },
+                        new
+                        {
+                            Alpha2 = "LU",
+                            Alpha3 = "LUX",
+                            CurrencySymbol = "EUR",
+                            Name = "Luxembourg",
+                            Numeric = 442
+                        },
+                        new
+                        {
+                            Alpha2 = "LV",
+                            Alpha3 = "LVA",
+                            CurrencySymbol = "EUR",
+                            Name = "Latvia",
+                            Numeric = 428
+                        },
+                        new
+                        {
+                            Alpha2 = "MC",
+                            Alpha3 = "MCO",
+                            CurrencySymbol = "EUR",
+                            Name = "Monaco",
+                            Numeric = 492
+                        },
+                        new
+                        {
+                            Alpha2 = "ME",
+                            Alpha3 = "MNE",
+                            CurrencySymbol = "EUR",
+                            Name = "Montenegro",
+                            Numeric = 499
+                        },
+                        new
+                        {
+                            Alpha2 = "MH",
+                            Alpha3 = "MHL",
+                            CurrencySymbol = "USD",
+                            Name = "Marshall Islands",
+                            Numeric = 584
+                        },
+                        new
+                        {
+                            Alpha2 = "MO",
+                            Alpha3 = "MAC",
+                            CurrencySymbol = "CNY",
+                            Name = "Macao",
+                            Numeric = 446
+                        },
+                        new
+                        {
+                            Alpha2 = "MT",
+                            Alpha3 = "MLT",
+                            CurrencySymbol = "EUR",
+                            Name = "Malta",
+                            Numeric = 470
+                        },
+                        new
+                        {
+                            Alpha2 = "MX",
+                            Alpha3 = "MEX",
+                            CurrencySymbol = "MXN",
+                            Name = "Mexico",
+                            Numeric = 484
+                        },
+                        new
+                        {
+                            Alpha2 = "MY",
+                            Alpha3 = "MYS",
+                            CurrencySymbol = "MYR",
+                            Name = "Malaysia",
+                            Numeric = 458
+                        },
+                        new
+                        {
+                            Alpha2 = "NF",
+                            Alpha3 = "NFK",
+                            CurrencySymbol = "GBP",
+                            Name = "Norfolk Island",
+                            Numeric = 574
+                        },
+                        new
+                        {
+                            Alpha2 = "NL",
+                            Alpha3 = "NLD",
+                            CurrencySymbol = "EUR",
+                            Name = "Netherlands",
+                            Numeric = 528
+                        },
+                        new
+                        {
+                            Alpha2 = "NO",
+                            Alpha3 = "NOR",
+                            CurrencySymbol = "NOK",
+                            Name = "Norway",
+                            Numeric = 578
+                        },
+                        new
+                        {
+                            Alpha2 = "NR",
+                            Alpha3 = "NRU",
+                            CurrencySymbol = "AUD",
+                            Name = "Nauru",
+                            Numeric = 520
+                        },
+                        new
+                        {
+                            Alpha2 = "NZ",
+                            Alpha3 = "NZL",
+                            CurrencySymbol = "NZD",
+                            Name = "New Zealand",
+                            Numeric = 554
+                        },
+                        new
+                        {
+                            Alpha2 = "PH",
+                            Alpha3 = "PHL",
+                            CurrencySymbol = "PHP",
+                            Name = "Philippines",
+                            Numeric = 608
+                        },
+                        new
+                        {
+                            Alpha2 = "PL",
+                            Alpha3 = "POL",
+                            CurrencySymbol = "PLN",
+                            Name = "Poland",
+                            Numeric = 616
+                        },
+                        new
+                        {
+                            Alpha2 = "PS",
+                            Alpha3 = "PSE",
+                            CurrencySymbol = "ILS",
+                            Name = "Palestine",
+                            Numeric = 275
+                        },
+                        new
+                        {
+                            Alpha2 = "PT",
+                            Alpha3 = "PRT",
+                            CurrencySymbol = "EUR",
+                            Name = "Portugal",
+                            Numeric = 620
+                        },
+                        new
+                        {
+                            Alpha2 = "PW",
+                            Alpha3 = "PLW",
+                            CurrencySymbol = "USD",
+                            Name = "Palau",
+                            Numeric = 585
+                        },
+                        new
+                        {
+                            Alpha2 = "RO",
+                            Alpha3 = "ROU",
+                            CurrencySymbol = "RON",
+                            Name = "Romania",
+                            Numeric = 642
+                        },
+                        new
+                        {
+                            Alpha2 = "SE",
+                            Alpha3 = "SWE",
+                            CurrencySymbol = "SEK",
+                            Name = "Sweden",
+                            Numeric = 752
+                        },
+                        new
+                        {
+                            Alpha2 = "SG",
+                            Alpha3 = "SGP",
+                            CurrencySymbol = "SGD",
+                            Name = "Singapore",
+                            Numeric = 702
+                        },
+                        new
+                        {
+                            Alpha2 = "SI",
+                            Alpha3 = "SVN",
+                            CurrencySymbol = "EUR",
+                            Name = "Slovenia",
+                            Numeric = 705
+                        },
+                        new
+                        {
+                            Alpha2 = "SJ",
+                            Alpha3 = "SJM",
+                            CurrencySymbol = "DKK",
+                            Name = "Svalbard and Jan Mayen",
+                            Numeric = 744
+                        },
+                        new
+                        {
+                            Alpha2 = "SK",
+                            Alpha3 = "SVK",
+                            CurrencySymbol = "EUR",
+                            Name = "Slovakia",
+                            Numeric = 703
+                        },
+                        new
+                        {
+                            Alpha2 = "SM",
+                            Alpha3 = "SMR",
+                            CurrencySymbol = "EUR",
+                            Name = "San Marino",
+                            Numeric = 674
+                        },
+                        new
+                        {
+                            Alpha2 = "SV",
+                            Alpha3 = "SLV",
+                            CurrencySymbol = "USD",
+                            Name = "El Salvador",
+                            Numeric = 222
+                        },
+                        new
+                        {
+                            Alpha2 = "TH",
+                            Alpha3 = "THA",
+                            CurrencySymbol = "THB",
+                            Name = "Thailand",
+                            Numeric = 764
+                        },
+                        new
+                        {
+                            Alpha2 = "TL",
+                            Alpha3 = "TLS",
+                            CurrencySymbol = "USD",
+                            Name = "Timor-Leste",
+                            Numeric = 626
+                        },
+                        new
+                        {
+                            Alpha2 = "TR",
+                            Alpha3 = "TUR",
+                            CurrencySymbol = "TRY",
+                            Name = "Turkey",
+                            Numeric = 792
+                        },
+                        new
+                        {
+                            Alpha2 = "TV",
+                            Alpha3 = "TUV",
+                            CurrencySymbol = "AUD",
+                            Name = "Tuvalu",
+                            Numeric = 798
+                        },
+                        new
+                        {
+                            Alpha2 = "US",
+                            Alpha3 = "USA",
+                            CurrencySymbol = "USD",
+                            Name = "United States of America",
+                            Numeric = 840
+                        },
+                        new
+                        {
+                            Alpha2 = "ZA",
+                            Alpha3 = "ZAF",
+                            CurrencySymbol = "ZAR",
+                            Name = "South Africa",
+                            Numeric = 710
+                        },
+                        new
+                        {
+                            Alpha2 = "ZW",
+                            Alpha3 = "ZWE",
+                            CurrencySymbol = "USD",
+                            Name = "Zimbabwe",
+                            Numeric = 716
+                        });
                 });
 
             modelBuilder.Entity("MP2_Asset_tracking_EF_Ole.Models.Currency", b =>
@@ -107,6 +709,200 @@ namespace MP2_Asset_tracking_EF_Ole.Migrations
                     b.HasKey("Symbol");
 
                     b.ToTable("Currencies");
+
+                    b.HasData(
+                        new
+                        {
+                            Symbol = "AUD",
+                            ExchangeFactor = 1.5890157359999999,
+                            Name = "Australian dollar"
+                        },
+                        new
+                        {
+                            Symbol = "BGN",
+                            ExchangeFactor = 2.0115190780000001,
+                            Name = "Bulgarian lev"
+                        },
+                        new
+                        {
+                            Symbol = "BRL",
+                            ExchangeFactor = 5.1893448519999996,
+                            Name = "Brazilian real"
+                        },
+                        new
+                        {
+                            Symbol = "CAD",
+                            ExchangeFactor = 1.3783811580000001,
+                            Name = "Canadian dollar"
+                        },
+                        new
+                        {
+                            Symbol = "CHF",
+                            ExchangeFactor = 0.99506325200000001,
+                            Name = "Swiss franc"
+                        },
+                        new
+                        {
+                            Symbol = "CNY",
+                            ExchangeFactor = 7.1653810550000001,
+                            Name = "Chinese yuan renminbi"
+                        },
+                        new
+                        {
+                            Symbol = "CZK",
+                            ExchangeFactor = 25.233981279999998,
+                            Name = "Czech koruna"
+                        },
+                        new
+                        {
+                            Symbol = "DKK",
+                            ExchangeFactor = 7.6509307829999997,
+                            Name = "Danish krone"
+                        },
+                        new
+                        {
+                            Symbol = "EUR",
+                            ExchangeFactor = 1.0284891490000001,
+                            Name = "Euro"
+                        },
+                        new
+                        {
+                            Symbol = "GBP",
+                            ExchangeFactor = 0.90201583900000004,
+                            Name = "Pound sterling"
+                        },
+                        new
+                        {
+                            Symbol = "HKD",
+                            ExchangeFactor = 7.849943433,
+                            Name = "Hong Kong dollar"
+                        },
+                        new
+                        {
+                            Symbol = "HRK",
+                            ExchangeFactor = 7.7438033529999997,
+                            Name = "Croatian kuna"
+                        },
+                        new
+                        {
+                            Symbol = "HUF",
+                            ExchangeFactor = 440.94415299999997,
+                            Name = "Hungarian forint"
+                        },
+                        new
+                        {
+                            Symbol = "IDR",
+                            ExchangeFactor = 15356.19665,
+                            Name = "Indonesian rupiah"
+                        },
+                        new
+                        {
+                            Symbol = "ILS",
+                            ExchangeFactor = 3.5766738660000001,
+                            Name = "Israeli shekel"
+                        },
+                        new
+                        {
+                            Symbol = "INR",
+                            ExchangeFactor = 82.233364190000003,
+                            Name = "Indian rupee"
+                        },
+                        new
+                        {
+                            Symbol = "ISK",
+                            ExchangeFactor = 144.70842329999999,
+                            Name = "Icelandic krona"
+                        },
+                        new
+                        {
+                            Symbol = "JPY",
+                            ExchangeFactor = 145.57235420000001,
+                            Name = "Japanese yen"
+                        },
+                        new
+                        {
+                            Symbol = "KRW",
+                            ExchangeFactor = 1432.5208270000001,
+                            Name = "South Korean won"
+                        },
+                        new
+                        {
+                            Symbol = "MXN",
+                            ExchangeFactor = 19.96451712,
+                            Name = "Mexican peso"
+                        },
+                        new
+                        {
+                            Symbol = "MYR",
+                            ExchangeFactor = 4.6730432989999997,
+                            Name = "Malaysian ringgit"
+                        },
+                        new
+                        {
+                            Symbol = "NOK",
+                            ExchangeFactor = 10.720456649999999,
+                            Name = "Norwegian krone"
+                        },
+                        new
+                        {
+                            Symbol = "NZD",
+                            ExchangeFactor = 1.7816517540000001,
+                            Name = "New Zealand dollar"
+                        },
+                        new
+                        {
+                            Symbol = "PHP",
+                            ExchangeFactor = 58.873804380000003,
+                            Name = "Philippine peso"
+                        },
+                        new
+                        {
+                            Symbol = "PLN",
+                            ExchangeFactor = 5.0077136690000001,
+                            Name = "Polish zloty"
+                        },
+                        new
+                        {
+                            Symbol = "RON",
+                            ExchangeFactor = 5.0801193050000002,
+                            Name = "Romanian leu"
+                        },
+                        new
+                        {
+                            Symbol = "SEK",
+                            ExchangeFactor = 11.31492338,
+                            Name = "Swedish krona"
+                        },
+                        new
+                        {
+                            Symbol = "SGD",
+                            ExchangeFactor = 1.4364907950000001,
+                            Name = "Singapore dollar"
+                        },
+                        new
+                        {
+                            Symbol = "THB",
+                            ExchangeFactor = 38.084953200000001,
+                            Name = "Thai baht"
+                        },
+                        new
+                        {
+                            Symbol = "TRY",
+                            ExchangeFactor = 18.583359049999999,
+                            Name = "Turkish lira"
+                        },
+                        new
+                        {
+                            Symbol = "USD",
+                            ExchangeFactor = 1.0,
+                            Name = "US dollar"
+                        },
+                        new
+                        {
+                            Symbol = "ZAR",
+                            ExchangeFactor = 18.11714491,
+                            Name = "South African rand"
+                        });
                 });
 
             modelBuilder.Entity("MP2_Asset_tracking_EF_Ole.Models.Office", b =>
@@ -130,6 +926,92 @@ namespace MP2_Asset_tracking_EF_Ole.Migrations
                     b.HasIndex("Alpha2");
 
                     b.ToTable("Officies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Alpha2 = "SE",
+                            Name = "Malmö"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Alpha2 = "SE",
+                            Name = "Göteborg"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Alpha2 = "SE",
+                            Name = "Stockholm"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Alpha2 = "DK",
+                            Name = "Copenhagen"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Alpha2 = "DK",
+                            Name = "Århus"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Alpha2 = "DK",
+                            Name = "Odense"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Alpha2 = "FI",
+                            Name = "Helsinki"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Alpha2 = "NO",
+                            Name = "Oslo"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Alpha2 = "US",
+                            Name = "New York"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Alpha2 = "FR",
+                            Name = "Paris"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Alpha2 = "ES",
+                            Name = "Madrid"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Alpha2 = "IT",
+                            Name = "Rome"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Alpha2 = "GB",
+                            Name = "London"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Alpha2 = "SE",
+                            Name = "Lund"
+                        });
                 });
 
             modelBuilder.Entity("MP2_Asset_tracking_EF_Ole.Models.Asset", b =>
