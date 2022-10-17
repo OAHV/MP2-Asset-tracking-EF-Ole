@@ -22,5 +22,10 @@ namespace MP2_Asset_tracking_EF_Ole.Models
         public List<Office> Offices { get; set; }
 
         public static List<Country> Countries = new List<Country>();
+
+        public void Display()
+        {
+            Console.WriteLine(Alpha2 + "-" + Alpha3 + "-" + Numeric.ToString().PadRight(4) + " " + Name + " (Currency: " + CurrencySymbol + ")");
+        }
     }
 }

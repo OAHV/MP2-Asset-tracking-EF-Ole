@@ -10,14 +10,7 @@ namespace MP2_Asset_tracking_EF_Ole.Models
 {
     public class Currency
     {
-        // This class handles currencies and exchanges between them
-        //public Currency(string name, string symbol, string country, double exchangeFactor)
-        //{
-        //    Name = name;
-        //    Symbol = symbol;
-        //    Country = country;
-        //    ExchangeFactor = exchangeFactor;
-        //}
+        // This class handles currencies and exchanging between them
 
         public string Name { get; set; }
         [Key]
@@ -38,17 +31,5 @@ namespace MP2_Asset_tracking_EF_Ole.Models
         {
             return dollarAmount * ExchangeFactor;
         }
-
-        // A list of all currencies avaliable
-        /*
-        // public static List<Currency> currencies = new List<Currency>
-        {
-            new Currency("Danish Crown", "DKK", "Denmark", 6.5),
-            new Currency("Swedish Crown", "SEK", "Sweden", 9.5),
-            new Currency("US Dollar", "$", "USA", 1.2),
-            new Currency("UK Pound", "£", "England", 0.8),
-            new Currency("Euro", "EUR", "EU", 0.9)
-        };
-        */
     }
 }

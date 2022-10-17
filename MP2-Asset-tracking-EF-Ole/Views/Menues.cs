@@ -32,16 +32,43 @@ namespace MP2_Asset_tracking_EF_Ole.Views
                 new MenuItem("Quit menu", k++, "Qq", ()=>exit=true)
             }, Asset.listAssets);
 
+        // Create an asset edit menu
+        private static int a = 1;
+        public static Menu editMenu = new Menu("Asset edit menu", "Your choise: ",
+            new List<MenuItem>
+            {
+                new MenuItem("Edit asset", a++, "Ee", Asset.Edit),
+                new MenuItem("Add assets", a++, "aA", Asset.addAssets),
+                new MenuItem("Next (press 'n' to choose next item to handle)", a++, "Nn", Asset.Next),
+                new MenuItem("Previous", a++, "Pp", Asset.Previous),
+                new MenuItem("Delete asset", a++, "dD", Asset.deleteAsset),
+                new MenuItem("Quit", a++, "qQ", ()=>exit=true)
+            }, Asset.listAssets);
+
+
+        // Create an office menu
+        private static int j = 1;
+        public static Menu officeMenu = new Menu("Office menu", "Your choise: ",
+            new List<MenuItem>
+            {
+                new MenuItem("List offices", j++, "lL", Office.listOffices),
+                new MenuItem("Add office", j++, "aA", Office.Add),
+                new MenuItem("Next (press 'n' to choose next item to handle)", j++, "Nn", Office.Next),
+                new MenuItem("Previous", j++, "Pp", Office.Previous),
+                new MenuItem("Delete office", j++, "dD", Office.Delete),
+                new MenuItem("Quit", j++, "qQ", ()=>exit=true)
+            }, Office.listOffices);
+
         // Create a main menu
         private static int i = 1;
         public static Menu mainMenu = new Menu("Main menu", "Your choise: ", 
             new List<MenuItem>
             {
                 new MenuItem("List assets", i++, "lL", Asset.listAssets),
-                new MenuItem("Add assets", i++, "aA", Asset.addAssets),
                 new MenuItem("Sort assets", i++, "sS", sortMenu.Perform),
-                new MenuItem("Delete asset", i++, "dD", Asset.deleteAsset),
-                new MenuItem("Quit", i++, "qQ", ()=>exit=true)
+                new MenuItem("Edit assets (Add, delete, change...)", i++, "Ee", editMenu.Perform),
+                new MenuItem("Handle offices", i++, "Oo", officeMenu.Perform),
+                new MenuItem("Quit program", i++, "qQ", ()=>exit=true)
             }, Asset.listAssets);
 
         // Create a project menu

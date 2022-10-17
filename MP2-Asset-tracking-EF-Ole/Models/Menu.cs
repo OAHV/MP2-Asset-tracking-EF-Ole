@@ -96,8 +96,12 @@ namespace MP2_Asset_tracking_EF_Ole.Models
             CursorControl.curSet();
 
             // Display header, items and prompt string
+            CursorControl.highLight();
             Console.WriteLine(Header);
+            CursorControl.highLight(false);
+
             foreach (var item in MenuItems) { item.Display(); }
+
             Console.Write(PromptString);
         }
     }

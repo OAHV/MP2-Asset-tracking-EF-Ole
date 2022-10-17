@@ -48,7 +48,7 @@ namespace MP2_Asset_tracking_EF_Ole.Views
             // Erase from top to bottom
             Console.CursorTop = fromRow;
             Console.CursorLeft = 0;
-            for (int r = 0; r < lastRow; r++) Console.WriteLine(" ".PadRight(Console.WindowWidth - Console.CursorLeft));
+            for (int r = 0; r < lastRow; r++) Console.WriteLine(" ".PadRight(Console.WindowWidth/* - Console.CursorLeft*/));
 
             // Set cursor at top of area
             Console.CursorTop = fromRow;
@@ -239,6 +239,70 @@ namespace MP2_Asset_tracking_EF_Ole.Views
                         found = o;
                         // Print it as a still valid choise
                         Console.WriteLine(o.Name + " : " + inputBuffer);
+                    }
+                }
+
+                // If no matches after looping through the list
+                if (matches == 0)
+                {
+                    errorDisplay(errorMessage);
+                    // Start again from scratch
+                    inputBuffer = "";
+                }
+            }
+            // Now we have found exactly one match
+            CursorControl.PopCursor();
+            // Write extra linefeed corresponding to the user pressing "Enter"-key
+            Console.WriteLine("");
+
+            // Return the found list item (string)
+            return found;
+        }
+
+        public static Country readCountryFromList(string prompt, string errorMessage)
+        {
+            Country found = new Country() { Name = "-no country-" };
+            int matches = 0;
+            string inputBuffer = "";
+
+            // Promt for input (and save cursor position)
+            Console.Write(prompt);
+            CursorControl.PushCursor();
+            //CursorControl.curSet(ConsoleScreen.lowerPartOfScreen - 4, 0);
+
+            // Erase lower part of screen for showing choises
+            clearLowerPart(Console.CursorTop + 3);
+
+            // Display as many countries as there is room for on screen
+            for(var i = Console.CursorTop; i < Console.WindowHeight - 1; i++)
+            {
+                Country.Countries[i].Display();
+            }
+
+            // Until exactly one match from list of valid choises
+            while (matches != 1)
+            {
+                matches = 0;
+
+                // Restore cursor to input position
+                CursorControl.restoreCur();
+
+                // Read a user input character and add it to the input buffer
+                inputBuffer += Console.ReadKey().KeyChar.ToString();
+
+                // Erase lower part of screen for showing now possible choises
+                clearLowerPart(ConsoleScreen.lowerPartOfScreen - 2);
+                foreach (Country c in Country.Countries)
+                {
+                    // If a valid choise contains the now input buffer
+                    if (c.Name.ToLower().Contains(inputBuffer.ToLower()))
+                    {
+                        // Count it to matches
+                        matches++;
+                        // Save it as the current choise
+                        found = c;
+                        // Print it as a still valid choise (and there is room on screen)
+                        if(Console.CursorTop < Console.WindowHeight - 1) Console.WriteLine(c.Name + " : " + inputBuffer);
                     }
                 }
 

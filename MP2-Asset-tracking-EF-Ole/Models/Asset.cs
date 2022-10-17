@@ -25,6 +25,9 @@ namespace MP2_Asset_tracking_EF_Ole.Models
         public DateTime PurchaseDate { get; set; }
         public int DollarPrice { get; set; }
 
+        // The selected task is to be highlighted (initially none selected)
+        private static int selected = -1;
+
         public static List<Asset> Assets = new List<Asset>();
 
         public Asset(string name = "-name-", string model = "-model-", string type = "-type-", string brand = "-brand-", int dollarPrice = 0)
@@ -62,7 +65,20 @@ namespace MP2_Asset_tracking_EF_Ole.Models
             CursorControl.setAlertColor();
 
             // Print list of assets
-            foreach (Asset a in Assets) a.Display();
+            foreach (Asset a in Assets)
+            {
+                // The user selected task is yellow
+                if (selected >= 0 && a == Assets[selected]) CursorControl.highLight(true, ConsoleColor.Yellow);
+
+                a.Display();
+
+                Console.ResetColor();
+            }
+        }
+
+        public static void Edit()
+        {
+
         }
 
         // Add new assets to list by user input
@@ -132,6 +148,24 @@ namespace MP2_Asset_tracking_EF_Ole.Models
         // Delete an asset by user choise
         public static void deleteAsset()
         {
+            // Remove the asset from the database
+            using (var db = new AssetsDB())
+            {
+                db.Assets.Remove(Assets[selected]);
+                db.SaveChanges();
+            }
+            // Delete: Remove the asset in focus from the list
+            Assets.RemoveAt(selected);
+
+            // If it was the last asset in the list, update to the now last item
+            if (selected > Assets.Count - 1) selected = Assets.Count - 1;
+            // Update the list of assets on screen below
+            //listAssets();
+
+
+
+
+            /*
             int i = 0;      // Index
             char c = ' ';   // User input choise
 
@@ -193,11 +227,11 @@ namespace MP2_Asset_tracking_EF_Ole.Models
                 CursorControl.restoreCur();
                 Console.Write(" ".PadRight(Console.WindowWidth));
                 CursorControl.restoreCur();
-            }
+                */
+
         }
 
         // Method for displaying an asset as a row on screen
-
         public void Display(int row = 0)
         {
             // Special case:
@@ -236,6 +270,18 @@ namespace MP2_Asset_tracking_EF_Ole.Models
 
             // Special case: Restore cursor row
             if (row != 0) CursorControl.PopCursor();
+        }
+
+        public static void Next()
+        {
+            // Select the next task
+            if (selected < Assets.Count - 1) selected++;
+        }
+
+        public static void Previous()
+        {
+            // Select the previous task
+            if (selected > 0) selected--;
         }
 
         public static void sortAssetsByOffice()
