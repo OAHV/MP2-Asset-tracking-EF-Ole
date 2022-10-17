@@ -26,7 +26,7 @@ namespace MP2_Asset_tracking_EF_Ole.Models
         public int DollarPrice { get; set; }
 
         // The selected task is to be highlighted (initially none selected)
-        private static int selected = -1;
+        public static int selected = -1;
 
         // The list of assets
         public static List<Asset> Assets = new List<Asset>();
@@ -59,6 +59,11 @@ namespace MP2_Asset_tracking_EF_Ole.Models
         // List assets on screen
         public static void listAssets()
         {
+
+            List<string> uniqueCountries = new List<string>();
+            List<string> uniqueOffices = new List<string>();
+            double dollarSum = 0;
+
             // Clear lower part of screen
             ConsoleScreen.clearLowerPart(ConsoleScreen.lowerPartOfScreen);
 
@@ -81,6 +86,10 @@ namespace MP2_Asset_tracking_EF_Ole.Models
             // Print list of assets
             foreach (Asset a in Assets)
             {
+                uniqueOffices.Add(a.Office.Name);
+                uniqueCountries.Add(a.Office.Country.Name);
+                dollarSum += a.DollarPrice;
+
                 // The user selected task is yellow
                 if (selected >= 0 && a == Assets[selected]) CursorControl.highLight(true, ConsoleColor.Yellow);
 
@@ -88,6 +97,20 @@ namespace MP2_Asset_tracking_EF_Ole.Models
 
                 Console.ResetColor();
             }
+            // Print footer
+            CursorControl.highLight();
+            Console.WriteLine(
+                Assets.Count
+                + " assets of total value $"
+                + dollarSum
+                + " in "
+                + uniqueOffices.Distinct().Count()
+                + " offices in "
+                + uniqueCountries.Distinct().Count()
+                + " countries"
+                .PadRight(50)
+             );
+            CursorControl.highLight(false);
         }
 
         // Change individual values of a specific asset
@@ -103,16 +126,21 @@ namespace MP2_Asset_tracking_EF_Ole.Models
             Asset newAsset = new Asset();
 
             // Where to display the new asset template as it is built
-            int displayAtRow = ConsoleScreen.lowerPartOfScreen - 2;
-            newAsset.Display(displayAtRow);
+            int displayAtRow = 1;
 
-            // Clear screen below for input dialog
-            ConsoleScreen.clearLowerPart(ConsoleScreen.lowerPartOfScreen);
+            Console.Clear();
+
+            // Display template asset as it is built
+            // The user can see the values beeing filled in
+            newAsset.Display(displayAtRow);
 
             // Display template asset as it is built
             Console.WriteLine("Add asset");
 
-            // User input of Name, Model, Price, Purchase date, Type and Brand
+            // Clear screen below for input dialog
+            ConsoleScreen.clearLowerPart(displayAtRow + 1);
+
+            // User input
             newAsset.Office = ConsoleScreen.readOfficeFromList("Office: ", "Not an Office. Please try again: ");
             newAsset.Display(displayAtRow);
             newAsset.Type = ConsoleScreen.readString("Type: ", "Not a Type. Please try again: ");
@@ -231,12 +259,12 @@ namespace MP2_Asset_tracking_EF_Ole.Models
 
         public static void sortAssetsByOffice()
         {
-            Assets = Assets.OrderBy(x => x.Office.Name).ToList();
+            Assets = Assets.OrderBy(x => x.Office.Name).ThenBy(x => x.PurchaseDate).ToList();
         }
 
         public static void sortAssetsByPrice()
         {
-            Assets = Assets.OrderBy(x => x.DollarPrice).ToList();
+            Assets = Assets.OrderBy(x => x.DollarPrice).ThenBy(x => x.PurchaseDate).ToList();
         }
 
         public static void sortAssetsByDate()
@@ -246,21 +274,21 @@ namespace MP2_Asset_tracking_EF_Ole.Models
 
         public static void sortAssetsByName()
         {
-            Assets = Assets.OrderBy(x => x.Name).ToList();
+            Assets = Assets.OrderBy(x => x.Name).ThenBy(x => x.PurchaseDate).ToList();
         }
 
         public static void sortAssetsByModel()
         {
-            Assets = Assets.OrderBy(x => x.Model).ToList();
+            Assets = Assets.OrderBy(x => x.Model).ThenBy(x => x.PurchaseDate).ToList();
         }
 
         public static void sortAssetsByType()
         {
-            Assets = Assets.OrderBy(x => x.Type).ToList();
+            Assets = Assets.OrderBy(x => x.Type).ThenBy(x => x.PurchaseDate).ToList();
         }
         public static void sortAssetsByBrand()
         {
-            Assets = Assets.OrderBy(x => x.Brand).ToList();
+            Assets = Assets.OrderBy(x => x.Brand).ThenBy(x => x.PurchaseDate).ToList();
         }
 
     }

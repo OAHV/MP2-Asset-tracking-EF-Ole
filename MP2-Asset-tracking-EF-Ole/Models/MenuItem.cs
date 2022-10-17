@@ -33,7 +33,7 @@ namespace MP2_Asset_tracking_EF_Ole.Models
         public void Perform()
         {
             MenuAction();
-            Console.Clear();
+            //Console.Clear();
         }
 
 

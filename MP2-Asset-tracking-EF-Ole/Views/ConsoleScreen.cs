@@ -212,7 +212,8 @@ namespace MP2_Asset_tracking_EF_Ole.Views
             CursorControl.PushCursor();
 
             // Erase lower part of screen for showing choises
-            clearLowerPart(19);
+            clearLowerPart(Console.CursorTop + 3);
+
             foreach (Office o in Office.Offices) o.Display();
 
             // Until exactly one match from list of valid choises
@@ -227,10 +228,10 @@ namespace MP2_Asset_tracking_EF_Ole.Views
                 inputBuffer += Console.ReadKey().KeyChar.ToString();
 
                 // Erase lower part of screen for showing now possible choises
-                clearLowerPart(19);
+                clearLowerPart(Console.CursorTop + 3);
                 foreach (Office o in Office.Offices)
                 {
-                    // If a valid choise contains the now input buffer
+                    // If a valid choise contains the current input buffer
                     if (o.Name.ToLower().Contains(inputBuffer.ToLower()))
                     {
                         // Count it to matches
@@ -251,11 +252,18 @@ namespace MP2_Asset_tracking_EF_Ole.Views
                 }
             }
             // Now we have found exactly one match
-            CursorControl.PopCursor();
-            // Write extra linefeed corresponding to the user pressing "Enter"-key
-            Console.WriteLine("");
 
-            // Return the found list item (string)
+            // Restore cursor to input position
+            CursorControl.restoreCur();
+            // Erase the screen below
+            clearLowerPart(Console.CursorTop + 1);
+            // Restore cursor to input position
+            CursorControl.PopCursor();
+
+            // Write extra linefeed corresponding to the user pressing "Enter"-key
+            Console.WriteLine(found.Name);
+
+            // Return the found list item (Office)
             return found;
         }
 
@@ -292,7 +300,7 @@ namespace MP2_Asset_tracking_EF_Ole.Views
                 inputBuffer += Console.ReadKey().KeyChar.ToString();
 
                 // Erase lower part of screen for showing now possible choises
-                clearLowerPart(ConsoleScreen.lowerPartOfScreen - 2);
+                clearLowerPart(Console.CursorTop + 3);
                 foreach (Country c in Country.Countries)
                 {
                     // If a valid choise contains the now input buffer
@@ -316,11 +324,17 @@ namespace MP2_Asset_tracking_EF_Ole.Views
                 }
             }
             // Now we have found exactly one match
-            CursorControl.PopCursor();
-            // Write extra linefeed corresponding to the user pressing "Enter"-key
-            Console.WriteLine("");
 
-            // Return the found list item (string)
+            // Restore cursor to input position and erase the screen below
+            CursorControl.restoreCur();
+            clearLowerPart(Console.CursorTop + 1);
+
+            // Restore cursor to input position and write found plus extra
+            // linefeed corresponding to the user pressing "Enter"-key
+            CursorControl.PopCursor();
+            Console.WriteLine(found.Name);
+
+            // Return the found list item (Country)
             return found;
         }
     }

@@ -15,6 +15,8 @@ namespace MP2_Asset_tracking_EF_Ole.Models
 
         // List of menu items ----------------------------------------
         List<MenuItem> m = new List<MenuItem>();
+
+        // Constructor
         public Menu(string header, string promptString, List<MenuItem> menuItems, Action lister)
         {
             // Header over the menu
@@ -28,15 +30,17 @@ namespace MP2_Asset_tracking_EF_Ole.Models
         }
 
         // Menu ------------------------------------------------------
+
+        // List of rows with choises
         public List<MenuItem> MenuItems;
+        // Reference to a method for displaying the proper list for this menu
         public Action Lister;
+
         public string PromptString;
 
         // The menu is called by this function
         public void Perform()
         {
-            // Clear screen
-            Console.Clear();
 
             // While user has not choosen to exit the menu
             while (!Menues.exit)
@@ -46,6 +50,8 @@ namespace MP2_Asset_tracking_EF_Ole.Models
                 Input();
             }
             // After user has chosen to exit the menu
+            // Clear screen
+            Console.Clear();
 
             // Reset to false before the actual exit
             Menues.exit = false;

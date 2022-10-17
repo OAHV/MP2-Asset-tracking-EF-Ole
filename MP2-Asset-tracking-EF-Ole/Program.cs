@@ -16,4 +16,10 @@ using ( var db = new AssetsDB())
 // Fire off the user interface
 Menues.mainMenu.Perform();
 
+// Good bye
+Console.Clear();
+Console.CursorTop = Console.WindowHeight / 3;
+Console.WriteLine("Thank you for using my app!\n\nOle Victor\n\n\n\n\n\n\n\n\n");
+
+
 // By Ole Victor

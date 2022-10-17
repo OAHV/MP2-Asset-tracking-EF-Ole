@@ -22,18 +22,23 @@ namespace MP2_Asset_tracking_EF_Ole.Models
         // List of all offices
         public static List<Office> Offices = new List<Office>();
 
+        static private int numberOfOfficesWithAssets = 0;
+
         // Header of list of offices
-        public static string Header = "Office".PadRight(15) + "Country";
+        public static string Header = "Office".PadRight(16) + "Country".PadRight(28) + "Assets".PadRight(10);
 
         // Footer is set later dynamically to compute the number of offices
         public static string Footer = "";
 
         // The currently selected task is to be highlighted (initially none selected)
-        private static int selected = -1;
+        public static int selected = -1;
 
         // Display one office on screen
         public void Display(int row = 0)
         {
+            // Count assets
+            int numberOfAssets = Asset.Assets.Where(a => a.Office == this).Count();
+            if(numberOfAssets > 0) numberOfOfficesWithAssets++;
             // Special case:
             // Single row print (not a list) at a specific row on screen
             if (row != 0)
@@ -44,7 +49,7 @@ namespace MP2_Asset_tracking_EF_Ole.Models
             }
 
             // Display office name, country name (Pad to erase to end-of-line)
-            Console.WriteLine((Name + " (" + Country.Name + ")").PadRight(Console.WindowWidth - 1));
+            Console.WriteLine((Name.PadRight(16) + Country.Name.PadRight(28) + (numberOfAssets==0?"none":numberOfAssets)).PadRight(Console.WindowWidth - 1));
 
             // Special case: Restore cursor position
             if (row != 0) CursorControl.PopCursor();
@@ -53,6 +58,10 @@ namespace MP2_Asset_tracking_EF_Ole.Models
         // List all offices on screen
         static public void listOffices()
         {
+            // Sort offices by country and then by office name
+            Offices = Offices.OrderBy(o => o.Country.Name).ThenBy(o => o.Name).ToList();
+
+            numberOfOfficesWithAssets = 0;
             // Clear lower part of screen
             ConsoleScreen.clearLowerPart(ConsoleScreen.lowerPartOfScreen - 2);
 
@@ -74,7 +83,7 @@ namespace MP2_Asset_tracking_EF_Ole.Models
 
             // Print footer
             CursorControl.highLight();
-            Footer = "Total " + Offices.Count.ToString() + " offices";
+            Footer = "Total " + Offices.Count.ToString() + " offices (" + numberOfOfficesWithAssets + " with assets)".PadRight(35);
             Console.WriteLine(Footer);
             CursorControl.highLight(false);
         }
@@ -90,7 +99,7 @@ namespace MP2_Asset_tracking_EF_Ole.Models
 
             Console.Clear();
 
-            // Display template asset as it is built
+            // Display template office as it is built
             // The user can see the values beeing filled in
             newOffice.Display(displayAtRow);
 

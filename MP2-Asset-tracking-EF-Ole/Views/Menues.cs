@@ -22,13 +22,13 @@ namespace MP2_Asset_tracking_EF_Ole.Views
         // Create a sort menu
         private static int k = 1;
         public static Menu sortMenu = new Menu("Choises for sorting", "Sort by: ", new List<MenuItem> {
+                new MenuItem("Sort by Brand", k++, "bB", Asset.sortAssetsByBrand),
+                new MenuItem("Sort by Name", k++, "nN", Asset.sortAssetsByName),
+                new MenuItem("Sort by Model", k++, "mM", Asset.sortAssetsByModel),
+                new MenuItem("Sort by Type", k++, "tT", Asset.sortAssetsByType),
                 new MenuItem("Sort by Office", k++, "oO", Asset.sortAssetsByOffice),
                 new MenuItem("Sort by Price ($)", k++, "$pP", Asset.sortAssetsByPrice),
                 new MenuItem("Sort by Date purchased", k++, "dD", Asset.sortAssetsByDate),
-                new MenuItem("Sort by Date Name", k++, "nN", Asset.sortAssetsByName),
-                new MenuItem("Sort by Date Model", k++, "mM", Asset.sortAssetsByModel),
-                new MenuItem("Sort by Date Type", k++, "tT", Asset.sortAssetsByType),
-                new MenuItem("Sort by Date Brand", k++, "bB", Asset.sortAssetsByBrand),
                 new MenuItem("Quit menu", k++, "Qq", ()=>exit=true)
             }, Asset.listAssets);
 
@@ -37,12 +37,11 @@ namespace MP2_Asset_tracking_EF_Ole.Views
         public static Menu editMenu = new Menu("Asset edit menu", "Your choise: ",
             new List<MenuItem>
             {
-                new MenuItem("Edit asset", a++, "Ee", Asset.Edit),
                 new MenuItem("Add assets", a++, "aA", Asset.addAssets),
                 new MenuItem("Next (press 'n' to choose next item to handle)", a++, "Nn", Asset.Next),
                 new MenuItem("Previous", a++, "Pp", Asset.Previous),
                 new MenuItem("Delete asset", a++, "dD", Asset.deleteAsset),
-                new MenuItem("Quit", a++, "qQ", ()=>exit=true)
+                new MenuItem("Quit", a++, "qQ", ()=>{exit=true;Asset.selected=-1;})
             }, Asset.listAssets);
 
 
@@ -56,7 +55,7 @@ namespace MP2_Asset_tracking_EF_Ole.Views
                 new MenuItem("Next (press 'n' to choose next item to handle)", j++, "Nn", Office.Next),
                 new MenuItem("Previous", j++, "Pp", Office.Previous),
                 new MenuItem("Delete office", j++, "dD", Office.Delete),
-                new MenuItem("Quit", j++, "qQ", ()=>exit=true)
+                new MenuItem("Quit", j++, "qQ", ()=>{exit=true;Office.selected=-1; })
             }, Office.listOffices);
 
         // Create a main menu
