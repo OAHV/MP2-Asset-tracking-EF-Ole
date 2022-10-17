@@ -200,7 +200,7 @@ namespace MP2_Asset_tracking_EF_Ole.Views
             return found;
         }
 
-        // User choise of project from a list of projects
+        // User choise of office from a list of offices
         public static Office readOfficeFromList(string prompt, string errorMessage)
         {
             Office found = new Office() { Name = "-no office-"};
@@ -259,6 +259,7 @@ namespace MP2_Asset_tracking_EF_Ole.Views
             return found;
         }
 
+        // User choise of country from a list of countries
         public static Country readCountryFromList(string prompt, string errorMessage)
         {
             Country found = new Country() { Name = "-no country-" };

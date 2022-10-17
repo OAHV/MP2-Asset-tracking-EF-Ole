@@ -14,7 +14,8 @@ namespace MP2_Asset_tracking_EF_Ole.Models
 
         public string Name { get; set; }
         [Key]
-        public string Symbol { get; set; }
+        public string Symbol { get; set; }              // Unique key currency letters
+        // List of countries that use this currency
         public List<Country> Countries { get; set; }
         public double ExchangeFactor { get; set; }
 
@@ -24,12 +25,16 @@ namespace MP2_Asset_tracking_EF_Ole.Models
             return amount / ExchangeFactor;
         }
 
-        public static List<Currency> Currencies = new List<Currency>();
 
         // Convert from Dollar to this currency
         public double fromDollar(double dollarAmount)
         {
             return dollarAmount * ExchangeFactor;
         }
+
+        // List of all currencies
+        public static List<Currency> Currencies = new List<Currency>();
     }
 }
+
+// By Ole Victor

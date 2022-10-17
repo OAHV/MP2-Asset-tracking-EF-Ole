@@ -12,35 +12,45 @@ namespace MP2_Asset_tracking_EF_Ole.Models
 {
     public class Office
     {
-        public int Id { get; set; } 
+        public int Id { get; set; }                 // Key
         public string Name { get; set; }
-        public string Alpha2 { get; set; }
+        public string Alpha2 { get; set; }          // Foreign key (Unique two-letter national id)
         [ForeignKey("Alpha2")]
         public Country Country { get; set; }
         public List<Asset> Assets { get; set; }
 
+        // List of all offices
         public static List<Office> Offices = new List<Office>();
+
+        // Header of list of offices
         public static string Header = "Office".PadRight(15) + "Country";
+
+        // Footer is set later dynamically to compute the number of offices
         public static string Footer = "";
-        // The selected task is to be highlighted (initially none selected)
+
+        // The currently selected task is to be highlighted (initially none selected)
         private static int selected = -1;
 
+        // Display one office on screen
         public void Display(int row = 0)
         {
             // Special case:
             // Single row print (not a list) at a specific row on screen
             if (row != 0)
             {
+                // Save cursor position on stack
                 CursorControl.PushCursor();
                 CursorControl.curSet(row, 0);
             }
 
+            // Display office name, country name (Pad to erase to end-of-line)
             Console.WriteLine((Name + " (" + Country.Name + ")").PadRight(Console.WindowWidth - 1));
 
-            // Special case: Restore cursor row
+            // Special case: Restore cursor position
             if (row != 0) CursorControl.PopCursor();
         }
 
+        // List all offices on screen
         static public void listOffices()
         {
             // Clear lower part of screen
@@ -69,31 +79,30 @@ namespace MP2_Asset_tracking_EF_Ole.Models
             CursorControl.highLight(false);
         }
 
+        // Add a new office
         public static void Add()
         {
             char ok = '-';      // User input
             Office newOffice = new Office() { Name = "-no office-", Country = new Country() { Name = "-no country-" } };
 
             // Where to display the new asset template as it is built
-            //int displayAtRow = ConsoleScreen.lowerPartOfScreen - 2;
             int displayAtRow = 1;
 
             Console.Clear();
 
             // Display template asset as it is built
+            // The user can see the values beeing filled in
             newOffice.Display(displayAtRow);
 
             Console.WriteLine("Add office");
 
             // Clear screen below for input dialog
-            //ConsoleScreen.clearLowerPart(ConsoleScreen.lowerPartOfScreen - 2);
             ConsoleScreen.clearLowerPart(displayAtRow + 1);
 
-
             // User input of Name and country
-            newOffice.Country = ConsoleScreen.readCountryFromList("Country: ", "Not a Country. Please try again: ");
-            newOffice.Display(displayAtRow);
             newOffice.Name = ConsoleScreen.readString("Office name: ", "Not a name. Please try again: ");
+            newOffice.Display(displayAtRow);
+            newOffice.Country = ConsoleScreen.readCountryFromList("Country: ", "Not a Country. Please try again: ");
             newOffice.Display(displayAtRow);
 
             // Confirm by user
@@ -114,8 +123,10 @@ namespace MP2_Asset_tracking_EF_Ole.Models
                         Offices.Add(newOffice);
                         break;
                     case 'n':
+                        // Do nothing and exit input loop
                         break;
                     default:
+                        // Message and restart input loop
                         Console.CursorLeft = 0;
                         ConsoleScreen.errorDisplay("Pleas answer 'y' or 'n': ");
                         ok = '-';
@@ -157,8 +168,7 @@ namespace MP2_Asset_tracking_EF_Ole.Models
             if (selected > Offices.Count - 1) selected = Offices.Count - 1;
             Footer = "Total " + Offices.Count.ToString() + " offices";
         }
-
     }
-
-
 }
+
+// By Ole Victor

@@ -13,12 +13,12 @@ namespace MP2_Asset_tracking_EF_Ole.Models
     public class Asset
     {
         // Asset properties
-        public int Id { get; set; }
+        public int Id { get; set; }         // Key
         public string Name { get; set; }
         public string Model { get; set; }
         public string Type { get; set; }
         public string Brand { get; set; }
-        public int OfficeId { get; set; }
+        public int OfficeId { get; set; }   // Foreign key
         [ForeignKey("OfficeId")]
         public Office Office { get; set; }
         public DateTime EndOfLife { get; set; }
@@ -28,15 +28,29 @@ namespace MP2_Asset_tracking_EF_Ole.Models
         // The selected task is to be highlighted (initially none selected)
         private static int selected = -1;
 
+        // The list of assets
         public static List<Asset> Assets = new List<Asset>();
 
+        // Constructor
         public Asset(string name = "-name-", string model = "-model-", string type = "-type-", string brand = "-brand-", int dollarPrice = 0)
         {
             Name = name;
             Model = model;
             Type = type;
             Brand = brand;
-            Office = new Office() { Name = "-office-", Country = new Country() { Name = "-country-", Alpha3 = "-country-", Currency = new Currency() { Symbol = "-" } } };
+            // A new asset will initially refere to this default office
+            Office = new Office()
+            {
+                Name = "-office-",
+                // A new office will initially refere to this default country
+                Country = new Country()
+                {
+                    Name = "-country-",
+                    Alpha3 = "-country-",
+                    // A new country will initially refere to this nonsence currency
+                    Currency = new Currency() { Symbol = "-" }
+                }
+            };
             EndOfLife = new DateTime();
             PurchaseDate = new DateTime();
             DollarPrice = dollarPrice;
@@ -62,7 +76,7 @@ namespace MP2_Asset_tracking_EF_Ole.Models
                 + "   " + "Purchased".PadRight(12)
                 + "End-of-Life".PadRight(12)
                 );
-            CursorControl.setAlertColor();
+            CursorControl.highLight(false);
 
             // Print list of assets
             foreach (Asset a in Assets)
@@ -76,9 +90,10 @@ namespace MP2_Asset_tracking_EF_Ole.Models
             }
         }
 
+        // Change individual values of a specific asset
         public static void Edit()
         {
-
+            // To be implemented
         }
 
         // Add new assets to list by user input
@@ -154,81 +169,11 @@ namespace MP2_Asset_tracking_EF_Ole.Models
                 db.Assets.Remove(Assets[selected]);
                 db.SaveChanges();
             }
-            // Delete: Remove the asset in focus from the list
+            // Remove the asset in focus from the list
             Assets.RemoveAt(selected);
 
             // If it was the last asset in the list, update to the now last item
             if (selected > Assets.Count - 1) selected = Assets.Count - 1;
-            // Update the list of assets on screen below
-            //listAssets();
-
-
-
-
-            /*
-            int i = 0;      // Index
-            char c = ' ';   // User input choise
-
-            // Clear screen, save cursor and list assets
-            Console.Clear();
-            CursorControl.PushCursor();
-            listAssets();
-
-            // At top of screen, ask for user choise
-            CursorControl.restoreCur();
-            Console.WriteLine("Delete asset");
-            Console.Write("Choose asset (n=next, p=previous, d=delete, q=quit): ");
-            CursorControl.PushCursor();
-
-            // Display which asset is in focus below user input
-            Assets[i].Display(3);
-
-            // Input user choise (exit on 'q')
-            CursorControl.restoreCur();
-            while ((c = Console.ReadKey().KeyChar) != 'q')
-            {
-                switch (c)
-                {
-                    case 'n':
-                        // Next: Switch asset in focus (down), if not at end-of-list
-                        if (i < Assets.Count - 1) i++;
-                        break;
-                    case 'p':
-                        // Previous: Switch asset in focus (up), if not at start-of-list
-                        if (i > 0) i--;
-                        break;
-                    case 'd':
-                        // Remove the asset from the database
-                        using (var db = new AssetsDB())
-                        {
-                            db.Assets.Remove(Assets[i]);
-                            db.SaveChanges();
-                        }
-                        // Delete: Remove the asset in focus from the list
-                        Assets.RemoveAt(i);
-                        // If it was the last asset in the list, update to the now last item
-                        if (i > Assets.Count - 1) i = Assets.Count - 1;
-                        // Update the list of assets on screen below
-                        listAssets();
-                        break;
-                    default:
-                        // Any other input
-                        ConsoleScreen.errorDisplay("Faulty input");
-                        break;
-                }
-
-                // If list is now empty: Exit
-                if (Assets.Count == 0) break;
-
-                // Display the asset now in focus
-                Assets[i].Display(3);
-
-                // Restore cursor to input point and erase rest of row
-                CursorControl.restoreCur();
-                Console.Write(" ".PadRight(Console.WindowWidth));
-                CursorControl.restoreCur();
-                */
-
         }
 
         // Method for displaying an asset as a row on screen
@@ -238,7 +183,9 @@ namespace MP2_Asset_tracking_EF_Ole.Models
             // Single row print (not a list) at a specific row on screen
             if (row != 0)
             {
+                // Save cursor position on the stack
                 CursorControl.PushCursor();
+                // Set cursor position
                 CursorControl.curSet(row, 0);
             }
 
@@ -254,9 +201,7 @@ namespace MP2_Asset_tracking_EF_Ole.Models
                 // Local currency found by office name
                 + Office.Country.Currency.Symbol.PadRight(3) + " " 
                 // Price in local currency found by office name
-                + (Office.Country.Currency.fromDollar(DollarPrice).ToString("0")).PadLeft(7) + " "
-                // Price i dollars
-                //+ ("$" + DollarPrice).PadLeft(10) + "   "
+                + Office.Country.Currency.fromDollar(DollarPrice).ToString("0").PadLeft(7) + " "
                 // Date of purchase
                 + PurchaseDate.ToString("d").PadRight(12)
                 );
@@ -320,3 +265,5 @@ namespace MP2_Asset_tracking_EF_Ole.Models
 
     }
 }
+
+// By Ole Victor

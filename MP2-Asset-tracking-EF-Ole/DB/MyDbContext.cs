@@ -29,6 +29,8 @@ namespace MP2_Asset_tracking_EF_Ole.DB
         }
 
         // Data seeding
+        // The seeding doesn't always work for me and I have been unable to figure out why.
+        // If it doesn't work for you, please use the 'assettracking.bak' backup file provided in the depository
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Currencies
@@ -169,3 +171,5 @@ namespace MP2_Asset_tracking_EF_Ole.DB
         }
     }
 }
+
+// By Ole Victor

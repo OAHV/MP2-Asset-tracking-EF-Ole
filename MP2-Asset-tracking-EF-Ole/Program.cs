@@ -16,9 +16,4 @@ using ( var db = new AssetsDB())
 // Fire off the user interface
 Menues.mainMenu.Perform();
 
-
-//using (var db = new AssetsDB())
-//{
-//    db.Assets.UpdateRange(Asset.Assets);
-//    db.SaveChanges();
-//}
+// By Ole Victor
