@@ -160,14 +160,14 @@ namespace MP2_Asset_tracking_EF_Ole.DB
             modelBuilder.Entity<Office>().HasData(new Office { Name = "London", Alpha2 = "GB", Id = 13 });
             modelBuilder.Entity<Office>().HasData(new Office { Name = "Lund", Alpha2 = "SE", Id = 14 });
 
-            // Assets
-            //modelBuilder.Entity<Asset>().HasData(new Asset { Name = "Latitude", Model = "E7440", Type = "Laptop", Brand = "Dell", Id = 1, OfficeId = 4, EndOfLife = new DateTime(1998, 04, 03), PurchaseDate = new DateTime(1995, 04, 03) });
-            //modelBuilder.Entity<Asset>().HasData(new Asset { Name = "Galaxy", Model = "A41", Type = "Mobile", Brand = "Samsung", Id = 3, OfficeId = 4, EndOfLife = new DateTime(2022, 05, 03), PurchaseDate = new DateTime(2019, 05, 03) });
-            //modelBuilder.Entity<Asset>().HasData(new Asset { Name = "Iphone", Model = "13", Type = "Mobile", Brand = "Apple", Id = 4, OfficeId = 4, EndOfLife = new DateTime(2025, 09, 15), PurchaseDate = new DateTime(2022, 09, 15) });
-            //modelBuilder.Entity<Asset>().HasData(new Asset { Name = "iPhone", Model = "14", Type = "Mobile", Brand = "Apple", Id = 5, OfficeId = 1, EndOfLife = new DateTime(2023, 03, 01), PurchaseDate = new DateTime(2023, 02, 01) });
-            //modelBuilder.Entity<Asset>().HasData(new Asset { Name = "Latitude", Model = "X89", Type = "Laptop", Brand = "IBM", Id = 7, OfficeId = 12, EndOfLife = new DateTime(2013, 08, 01), PurchaseDate = new DateTime(2010, 08, 01) });
-            //modelBuilder.Entity<Asset>().HasData(new Asset { Name = "Latitude", Model = "E7440", Type = "Laptop", Brand = "Dell", Id = 8, OfficeId = 8, EndOfLife = new DateTime(2022, 08, 01), PurchaseDate = new DateTime(2019, 08, 01) });
-            //modelBuilder.Entity<Asset>().HasData(new Asset { Name = "X360", Model = "i", Type = "Laptop", Brand = "HP", Id = 9, OfficeId = 2, EndOfLife = new DateTime(2022, 06, 01), PurchaseDate = new DateTime(2019, 06, 01) });
+            // Assets (This doesn't work for some magic reason)
+            modelBuilder.Entity<Asset>().HasData(new Asset { Name = "Latitude", Model = "E7440", Type = "Laptop", Brand = "Dell", Id = 1, OfficeId = 4, EndOfLife = new DateTime(1998, 04, 03), PurchaseDate = new DateTime(1995, 04, 03), DollarPrice = 300 });
+            modelBuilder.Entity<Asset>().HasData(new Asset { Name = "Galaxy", Model = "A41", Type = "Mobile", Brand = "Samsung", Id = 3, OfficeId = 4, EndOfLife = new DateTime(2022, 05, 03), PurchaseDate = new DateTime(2019, 05, 03), DollarPrice = 200 });
+            modelBuilder.Entity<Asset>().HasData(new Asset { Name = "Iphone", Model = "13", Type = "Mobile", Brand = "Apple", Id = 4, OfficeId = 4, EndOfLife = new DateTime(2025, 09, 15), PurchaseDate = new DateTime(2022, 09, 15), DollarPrice = 600 });
+            modelBuilder.Entity<Asset>().HasData(new Asset { Name = "iPhone", Model = "14", Type = "Mobile", Brand = "Apple", Id = 5, OfficeId = 1, EndOfLife = new DateTime(2023, 03, 01), PurchaseDate = new DateTime(2023, 02, 01), DollarPrice = 1200 });
+            modelBuilder.Entity<Asset>().HasData(new Asset { Name = "Latitude", Model = "X89", Type = "Laptop", Brand = "IBM", Id = 7, OfficeId = 12, EndOfLife = new DateTime(2013, 08, 01), PurchaseDate = new DateTime(2010, 08, 01), DollarPrice = 800 });
+            modelBuilder.Entity<Asset>().HasData(new Asset { Name = "Latitude", Model = "E7440", Type = "Laptop", Brand = "Dell", Id = 8, OfficeId = 8, EndOfLife = new DateTime(2022, 08, 01), PurchaseDate = new DateTime(2019, 08, 01), DollarPrice = 200 });
+            modelBuilder.Entity<Asset>().HasData(new Asset { Name = "X360", Model = "i", Type = "Laptop", Brand = "HP", Id = 9, OfficeId = 2, EndOfLife = new DateTime(2022, 06, 01), PurchaseDate = new DateTime(2019, 06, 01), DollarPrice = 400 });
         }
     }
 }
